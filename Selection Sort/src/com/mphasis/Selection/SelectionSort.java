@@ -1,12 +1,10 @@
 package com.mphasis.Selection;
 
-import java.util.Arrays;
-
 public class SelectionSort {
 
 	public static void main(String[] args) {
 		int[] arr = { 9, 6, 3, 1, 2, 4, 5 };
-		int length = arr.length;
+	//	int length = arr.length;
 		
 	//Arrays.sort(arr);   // it is a pre defined function
 				selectionSort(arr);
