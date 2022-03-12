@@ -1,34 +1,24 @@
-package com.simplilearn.app;
+package com.myapp;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebInitParam;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class HelloServlet
+ * Servlet implementation class SessionDemo
  */
-@WebServlet(
-		urlPatterns = { "/HelloServlet" }, 
-		initParams = { 
-				@WebInitParam(name = "city", value = "chennai")
-		})
-public class HelloServlet extends HttpServlet {
+public class SessionDemo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-	
-	String city;
-	
-    public HelloServlet() {
+    public SessionDemo() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,22 +26,20 @@ public class HelloServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-    
-    @Override
-    public void init(ServletConfig config) throws ServletException {
-    	
-    	city =	config.getInitParameter("city");
-    	
-    		
-    	
-    }
-    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+
+			HttpSession session1 =	request.getSession(); // session obj is created 
+			
+		PrintWriter out = 	response.getWriter();
 		
+			out.print("session1 "+session1);
 		
-		PrintWriter out =	response.getWriter();
+				session1.invalidate();
+			
+			HttpSession session2 =	request.getSession(false);
 		
-			out.print("You are from "+city);
+			out.print("<br>session2 "+session2);
 	}
 
 	/**
